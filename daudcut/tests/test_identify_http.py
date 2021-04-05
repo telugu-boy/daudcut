@@ -16,24 +16,27 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
-import logging
-
-import dacaudio
+from daudcut import dacaudio
 
 if __name__ == "__main__":
-    root = logging.getLogger("daudcut")
-    root.setLevel(logging.DEBUG)
-
-    stdouthandler = logging.StreamHandler(sys.stdout)
-    formatter = logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    # wav
+    assert (
+        dacaudio.http_get_audio(
+            "https://cdn.discordapp.com/attachments/827431844853055529/828484426525966367/test_audio.wav"
+        ).codec.name
+        == "WAVE"
     )
-
-    stdouthandler.setFormatter(formatter)
-    root.addHandler(stdouthandler)
-
-    aud = dacaudio.http_get_audio(
-        "https://cdn.discordapp.com/attachments/827431844853055529/828484426525966367/test_audio.wav"
+    # mp3
+    assert (
+        dacaudio.http_get_audio(
+            "https://cdn.discordapp.com/attachments/827431844853055529/828474634730602566/test_audio.mp3"
+        ).codec.name
+        == "MP3"
     )
-    print(aud.codec.name)
+    # ogg (vorbis/opus)
+    assert (
+        dacaudio.http_get_audio(
+            "https://cdn.discordapp.com/attachments/827431844853055529/828501784753733662/test_audio.ogg"
+        ).codec.name
+        == "VORBIS"
+    )

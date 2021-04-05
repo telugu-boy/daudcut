@@ -1,1 +1,6 @@
 youtube-dl
+discord
+ffmpeg-python
+python-libmagic
+
+python-magic-bin; platform_system == "Windows"

@@ -1,0 +1,4 @@
+black
+pylint>=2.5
+pre-commit
+pytest

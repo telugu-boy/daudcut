@@ -126,3 +126,7 @@ dmypy.json
 
 # Editor specific files
 .vs/
+*.sln
+*.pyproj
+daudcut/daudcut.pyproj
+daudcut/daudcut.pyproj.user
